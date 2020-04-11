@@ -34,9 +34,7 @@ public class Server {
     private void client(Socket socket) throws IOException {
         PrintWriter writer = new PrintWriter(socket.getOutputStream());
         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        String message = reader.readLine();
-        writer.print(message);
-        writer.flush();
+        Request.request(writer, reader, this.roversServer);
         socket.close();
     }
 }
