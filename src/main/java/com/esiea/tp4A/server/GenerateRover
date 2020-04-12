@@ -1,0 +1,24 @@
+package com.esiea.tp4A.server;
+
+import java.util.ArrayList;
+import java.util.Random;
+import com.esiea.tp4A.domain.*;
+public class GenerateRover {
+	
+	private Carte map;
+	private ArrayList<Rover> Liste = null;
+	
+	public GenerateRover(Carte map, ArrayList<Rover> Liste) {
+		this.map = map;
+		this.Liste = Liste;
+	}
+	
+	public Rover genStart(int laserRange, String player) {
+		Random random = new Random();
+		int []coor = new int[2];
+		coor = genPos(coor, random);
+		Rover tmp = new Rover(map,laserRange,player);
+		tmp.initCoor(coor[0],coor[1]);
+		return tmp;
+	}
+}
