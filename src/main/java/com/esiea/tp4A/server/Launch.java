@@ -10,7 +10,7 @@ public class Launch {
     	Random random = new Random();
     	int i = random.nextInt(3);
     	int j = random.nextInt(3);
-        Server serveur = new Server(8086, choixTaille[i],choixTaille[i],choixRange[j]);
+        Server serveur = new Server(8080, choixTaille[i],choixTaille[i],choixRange[j]);
         serveur.start();
     }
 }
