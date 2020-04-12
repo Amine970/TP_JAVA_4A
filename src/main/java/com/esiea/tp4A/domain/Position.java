@@ -1,6 +1,7 @@
 package com.esiea.tp4A.domain;
 
 public interface Position {
+
     int getX();
     int getY();
     Direction getDirection();
@@ -10,6 +11,11 @@ public interface Position {
     }
 
     final class FixedPosition implements Position {
+        @Override
+        public boolean equals(Object obj) {
+            FixedPosition autre = (FixedPosition) obj;
+            return this.x == autre.x && this.y == autre.y;
+        }
 
         private final int x;
         private final int y;

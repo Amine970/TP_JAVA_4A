@@ -1,6 +1,5 @@
 com\esiea\tp4A\domain\MoveTest.class
 com\esiea\tp4A\domain\TirTest.class
-com\esiea\tp4A\CalcTest.class
 com\esiea\tp4A\domain\RoverTest.class
 com\esiea\tp4A\server\GestionRoversTest.class
 com\esiea\tp4A\domain\CarteTest.class
