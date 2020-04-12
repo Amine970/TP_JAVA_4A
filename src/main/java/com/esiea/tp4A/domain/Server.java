@@ -1,22 +1,22 @@
-package com.esiea.tp4A.domain;
+package com.esiea.tp4A.server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
+import com.esiea.tp4A.domain.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    private ServerSocket serverSocket;
-    private RoversServer roversServer;
-    public Server (int port) throws IOException {
+    private final ServerSocket serverSocket;
+    private final GestionRovers roversServer;
+    private Carte map = null;
+    private final int laserRange;
+    public Server (int port, int tailleX, int tailleY, int laserRange) throws IOException {
         this.serverSocket = new ServerSocket(port);
-        this.roversServer = null;
+        this.laserRange = laserRange;
+        this.map = new Carte(tailleX,tailleY);
+        this.roversServer = new GestionRovers(this.map,this.laserRange);
     }
-    public void setRoversServer(RoversServer roversServer) {
-        this.roversServer = roversServer;
-    }
+    
     public void start () {
         if (this.roversServer == null) return;
         Thread thread = new Thread(() -> boucle());
@@ -34,7 +34,7 @@ public class Server {
     private void client(Socket socket) throws IOException {
         PrintWriter writer = new PrintWriter(socket.getOutputStream());
         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        Request.request(writer, reader, this.roversServer);
+        Request.request(writer, reader, this.roversServer, laserRange);
         socket.close();
     }
 }
