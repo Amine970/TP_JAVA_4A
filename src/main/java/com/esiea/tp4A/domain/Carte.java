@@ -40,6 +40,19 @@ public class Carte implements PlanetMap {
 		return taille[0];
 	}
 	
+	public boolean valid(int x, int y) {
+		for(int i=0;i<obstacle.size();i++) {
+			if(obstacle.get(i).getX() == x && obstacle.get(i).getY() == y) return false;
+		}
+		return true;
+	}
+	
+	public void destroy(int x, int y) {
+		for(int i=0;i<obstacle.size();i++) {
+			if(obstacle.get(i).getX() == x && obstacle.get(i).getY() == y) obstacle.remove(i);
+		}
+	}
+	
 	public ArrayList<Position> getObstacle() {
 		return obstacle;
 	}
