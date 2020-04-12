@@ -16,4 +16,22 @@ public class Request {
         else if (type.equals("GET") && link.length == 4 && link[0].equals("") && link[1].equals("api") && link[2].equals("player")) get(printWriter, roversServer, link[3], laserRange);
         else if (type.equals("PATCH") && link.length == 5 && link[0].equals("") && link[1].equals("api") && link[2].equals("player")) patch(printWriter, roversServer, link[3], link[4], laserRange);
     }
+    private static void post(PrintWriter printWriter, GestionRovers roversServer, String player, int laserRange) {
+        if (roversServer.containRover(player)) Sender.bad(printWriter, "409 Conflict");
+        else {
+            roversServer.setRover(player);
+            Sender.good(printWriter,player, roversServer, laserRange);
+        }
+    }
+    private static void get(PrintWriter printWriter, GestionRovers roversServer, String player, int laserRange) {
+        if (!roversServer.containRover(player)) Sender.bad(printWriter, "404 Not Found");
+        else Sender.good(printWriter,player, roversServer, laserRange);
+    }
+    private static void patch(PrintWriter printWriter, GestionRovers roversServer, String player,String commande, int laserRange) {
+        if (!roversServer.containRover(player)) Sender.bad(printWriter, "404 Not Found");
+        else {
+            roversServer.getRover(player).move(commande);
+            Sender.good(printWriter,player,roversServer, laserRange);
+        }
+    }
 }
