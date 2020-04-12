@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Server.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp-4A-2020</a> &gt; <a href="index.source.html" class="el_package">com.esiea.tp4A.server</a> &gt; <span class="el_source">Server.java</span></div><h1>Server.java</h1><pre class="source lang-java linenums">package com.esiea.tp4A.server;
+
+import java.io.*;
+import com.esiea.tp4A.domain.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Server {
+    private final ServerSocket serverSocket;
+    private final GestionRovers roversServer;
+<span class="nc" id="L11">    private Carte map = null;</span>
+    private final int laserRange;
+<span class="nc" id="L13">    public Server (int port, int tailleX, int tailleY, int laserRange) throws IOException {</span>
+<span class="nc" id="L14">        this.serverSocket = new ServerSocket(port);</span>
+<span class="nc" id="L15">        this.laserRange = laserRange;</span>
+<span class="nc" id="L16">        this.map = new Carte(tailleX,tailleY);</span>
+<span class="nc" id="L17">        this.roversServer = new GestionRovers(this.map,this.laserRange);</span>
+<span class="nc" id="L18">    }</span>
+    
+    public void start () {
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        if (this.roversServer == null) return;</span>
+<span class="nc" id="L22">        Thread thread = new Thread(() -&gt; boucle());</span>
+<span class="nc" id="L23">        thread.start();</span>
+<span class="nc" id="L24">    }</span>
+    private void boucle() {
+        while(true) {
+            try {
+<span class="nc" id="L28">                client(this.serverSocket.accept());</span>
+<span class="nc" id="L29">            } catch (IOException e) {</span>
+<span class="nc" id="L30">                e.printStackTrace();</span>
+<span class="nc" id="L31">            }</span>
+        }
+    }
+    private void client(Socket socket) throws IOException {
+<span class="nc" id="L35">        PrintWriter writer = new PrintWriter(socket.getOutputStream());</span>
+<span class="nc" id="L36">        BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));</span>
+<span class="nc" id="L37">        Request.request(writer, reader, this.roversServer, laserRange);</span>
+<span class="nc" id="L38">        socket.close();</span>
+<span class="nc" id="L39">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

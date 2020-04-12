@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Carte.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp-4A-2020</a> &gt; <a href="index.source.html" class="el_package">com.esiea.tp4A.domain</a> &gt; <span class="el_source">Carte.java</span></div><h1>Carte.java</h1><pre class="source lang-java linenums">package com.esiea.tp4A.domain;
+
+import java.util.*;
+
+public class Carte implements PlanetMap {
+	
+	private ArrayList&lt;Position&gt; obstacle;	
+<span class="fc" id="L8">	private final int taille[] = new int[2];</span>
+	
+<span class="fc" id="L10">	public Carte(int x, int y) {</span>
+<span class="fc" id="L11">		taille[0] = x;</span>
+<span class="fc" id="L12">		taille[1] = y;</span>
+<span class="fc" id="L13">		InitObstacle();</span>
+<span class="fc" id="L14">	}</span>
+
+	private HashSet&lt;int[]&gt; InitCoor(int lim1,int lim2,Random random) {
+<span class="fc" id="L17">		HashSet&lt;int []&gt; tmp = new HashSet&lt;int[]&gt;();</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">		for(int i=0;i&lt;Math.round(taille[0]*taille[1]*15/100);i++) {</span>
+<span class="fc" id="L19">			int coor[] = {random.nextInt(lim1)-Math.round(lim1/2),random.nextInt(lim2)-Math.round(lim2/2)};</span>
+<span class="fc" id="L20">			tmp.add(coor);}</span>
+<span class="fc" id="L21">		return tmp;</span>
+	}
+	public Set&lt;Position&gt; obstaclePositions() {
+<span class="fc" id="L24">		Random random = new Random();</span>
+<span class="fc" id="L25">		Set&lt;Position&gt; obstacle = new HashSet&lt;Position&gt;();</span>
+<span class="fc" id="L26">		ArrayList&lt;int []&gt; coor = new ArrayList&lt;int []&gt;(InitCoor(taille[0],taille[1],random));</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">		for(int i=0;i&lt;coor.size();i++) obstacle.add(Position.of(coor.get(i)[0],coor.get(i)[1],Direction.NORTH));</span>
+<span class="fc" id="L28">		return obstacle;</span>
+	}
+	
+	private void InitObstacle() {
+<span class="fc" id="L32">		obstacle = new ArrayList&lt;Position&gt;(obstaclePositions());</span>
+<span class="fc" id="L33">	}</span>
+	
+	public int getTailleY() {
+<span class="fc" id="L36">		return taille[1];</span>
+	}
+	
+	public int getTailleX() {
+<span class="fc" id="L40">		return taille[0];</span>
+	}
+	
+	public boolean valid(int x, int y) {
+<span class="fc bfc" id="L44" title="All 2 branches covered.">		for(int i=0;i&lt;obstacle.size();i++) {</span>
+<span class="fc bfc" id="L45" title="All 4 branches covered.">			if(obstacle.get(i).getX() == x &amp;&amp; obstacle.get(i).getY() == y) return false;</span>
+		}
+<span class="fc" id="L47">		return true;</span>
+	}
+	
+	public void destroy(int x, int y) {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">		for(int i=0;i&lt;obstacle.size();i++) {</span>
+<span class="fc bfc" id="L52" title="All 4 branches covered.">			if(obstacle.get(i).getX() == x &amp;&amp; obstacle.get(i).getY() == y) obstacle.remove(i);</span>
+		}
+<span class="fc" id="L54">	}</span>
+	
+	public ArrayList&lt;Position&gt; getObstacle() {
+<span class="fc" id="L57">		return obstacle;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

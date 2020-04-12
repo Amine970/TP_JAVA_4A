@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Rover.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp-4A-2020</a> &gt; <a href="index.source.html" class="el_package">com.esiea.tp4A.domain</a> &gt; <span class="el_source">Rover.java</span></div><h1>Rover.java</h1><pre class="source lang-java linenums">package com.esiea.tp4A.domain;
+
+public class Rover implements Position,MarsRover {
+	
+	private Position Coor;
+	private Carte map;
+	private final int range;
+	private final String name;
+<span class="nc" id="L9">	private boolean vie = true;</span>
+<span class="nc" id="L10">	public Rover(Carte map, int range, String name) {</span>
+<span class="nc" id="L11">		Coor = MarsRover.super.move(&quot;Init&quot;);</span>
+<span class="nc" id="L12">		this.range = range;</span>
+<span class="nc" id="L13">		this.map = map;</span>
+<span class="nc" id="L14">		this.name = name;</span>
+<span class="nc" id="L15">	}</span>
+	public int getX() {
+<span class="nc" id="L17">		return Coor.getX();	}</span>
+	public int getY() {
+<span class="nc" id="L19">		return Coor.getY();	}</span>
+	public Direction getDirection() {
+<span class="nc" id="L21">		return Coor.getDirection();	}	</span>
+	private void cercle() {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">		if(getY() &gt; Math.round(map.getTailleY()/2)) Coor = Position.of(getX(),-Math.round(map.getTailleY()/2)+1,getDirection());</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">		if(getY() &lt; -Math.round(map.getTailleY()/2)+1) Coor = Position.of(getX(),Math.round(map.getTailleY()/2),getDirection());</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">		if(getX() &gt; Math.round(map.getTailleX()/2)) Coor = Position.of(-Math.round(map.getTailleX()/2)+1,getY(),getDirection());</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">		if(getX() &lt; -Math.round(map.getTailleX()/2)+1) Coor = Position.of(Math.round(map.getTailleX()/2),getY(),getDirection());	}</span>
+	private void deplacement(char com) {
+<span class="nc" id="L28">		Move move = new Move(map,getDirection(),getX(),getY());</span>
+<span class="nc" id="L29">		move.go(com);</span>
+<span class="nc" id="L30">		Coor = Position.of(move.setX(),move.setY(),move.setDirection());</span>
+<span class="nc bnc" id="L31" title="All 4 branches missed.">		if(com == 'f' || com == 'b') cercle();}</span>
+	private void action(char com[]) {
+<span class="nc bnc" id="L33" title="All 2 branches missed.">		for(int i=0;i&lt;com.length;i++) {</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">			if(com[i] == 's') new Tir(map,getX(),getY(),getDirection(),range);</span>
+<span class="nc" id="L35">			else deplacement(com[i]);}}</span>
+	public Position move(String commande) {
+<span class="nc" id="L37">		char [] com = commande.toCharArray();</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">		if(vie) action(com);</span>
+<span class="nc" id="L39">        return Coor;    } </span>
+	public String getName() {
+<span class="nc" id="L41">		return name;</span>
+	}
+	public boolean getLive() {
+<span class="nc" id="L44">		return vie;</span>
+	}
+	public void initCoor(int x, int y) {
+<span class="nc" id="L47">		Coor = Position.of(x,y,Direction.NORTH);</span>
+<span class="nc" id="L48">	}</span>
+	public void mort() {
+<span class="nc" id="L50">		vie = false;</span>
+<span class="nc" id="L51">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

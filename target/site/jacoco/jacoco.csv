@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+tp-4A-2020,com.esiea.tp4A.server,Sender,150,0,8,0,30,0,14,0,10,0
+tp-4A-2020,com.esiea.tp4A.server,Launch,63,0,0,0,9,0,3,0,3,0
+tp-4A-2020,com.esiea.tp4A.server,GenerateRover,119,0,12,0,18,0,10,0,4,0
+tp-4A-2020,com.esiea.tp4A.server,Server,82,0,2,0,20,0,6,0,5,0
+tp-4A-2020,com.esiea.tp4A.server,GestionRovers,170,0,22,0,22,0,19,0,8,0
+tp-4A-2020,com.esiea.tp4A.server,Request,182,0,38,0,21,0,25,0,6,0
+tp-4A-2020,com.esiea.tp4A.domain,Position,0,7,0,0,0,1,0,1,0,1
+tp-4A-2020,com.esiea.tp4A.domain,Position.FixedPosition,3,18,0,0,1,7,1,3,1,3
+tp-4A-2020,com.esiea.tp4A.domain,MarsRover,11,0,0,0,4,0,4,0,4,0
+tp-4A-2020,com.esiea.tp4A.domain,Tir,306,0,48,0,31,0,34,0,10,0
+tp-4A-2020,com.esiea.tp4A.domain,Direction,0,44,0,0,0,2,0,1,0,1
+tp-4A-2020,com.esiea.tp4A.domain,Rover,237,0,18,0,30,0,21,0,12,0
+tp-4A-2020,com.esiea.tp4A.domain,Carte,0,208,0,16,0,27,0,17,0,9
+tp-4A-2020,com.esiea.tp4A.domain,Move,372,0,78,0,30,0,49,0,10,0
+tp-4A-2020,com.esiea.tp4A,Calc,4,7,0,0,1,2,1,2,1,2

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Sender.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp-4A-2020</a> &gt; <a href="index.source.html" class="el_package">com.esiea.tp4A.server</a> &gt; <span class="el_source">Sender.java</span></div><h1>Sender.java</h1><pre class="source lang-java linenums">package com.esiea.tp4A.server;
+
+import com.esiea.tp4A.domain.*;
+
+import java.io.PrintWriter;
+import java.util.*;
+
+<span class="nc" id="L8">public class Sender {</span>
+    public static void bad (PrintWriter writer, String code) {
+<span class="nc" id="L10">        String message = &quot;HTTP/1.0 &quot; + code + &quot;\n\n&quot;;</span>
+<span class="nc" id="L11">        send(writer, message);</span>
+<span class="nc" id="L12">    }</span>
+    public static void good (PrintWriter writer, String player, GestionRovers roverServer, int laserRange) {
+<span class="nc" id="L14">        Rover rover = roverServer.getRover(player);</span>
+<span class="nc" id="L15">        String message = &quot;HTTP/1.0 200 OK\nContent-Type: application/json\n\n&quot;;</span>
+<span class="nc" id="L16">        message += &quot;{\&quot;player\&quot;:{\&quot;name\&quot;:\&quot;&quot; + player + &quot;\&quot;,\&quot;status\&quot;:\&quot;&quot; + roverServer.getStatus(player) +  &quot;\&quot;,\&quot;position\&quot;:&quot; + position(rover) + &quot;,\&quot;laser-range\&quot;:&quot; + laserRange + &quot;},\&quot;local-map\&quot;:{\&quot;obstacle\&quot;:&quot; + obstacle(roverServer,rover) +&quot;,\&quot;players\&quot;:&quot; + players(roverServer, rover) + &quot;}}&quot;;;</span>
+<span class="nc" id="L17">        send(writer, message);</span>
+<span class="nc" id="L18">    }</span>
+    private static String players(GestionRovers roversServer, Rover rover) {
+<span class="nc" id="L20">        ArrayList&lt;Rover&gt; rovers = roversServer.getMapRover(rover.getX(),rover.getY());</span>
+<span class="nc" id="L21">        return players(rovers, 0, rovers.size()-1);</span>
+    }
+    private static String players(ArrayList&lt;Rover&gt; rovers, int increment, int size) {
+<span class="nc" id="L24">        String message = &quot;&quot;;</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        for (Rover rov : rovers) {</span>
+<span class="nc" id="L26">            message += &quot;{\&quot;name\&quot;:\&quot;&quot; + rov.getName() + &quot;\&quot;,\&quot;x\&quot;:&quot; + rov.getX() + &quot;,\&quot;y\&quot;:&quot; + rov.getY() + &quot;}&quot;;</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">            if(increment != size) message += &quot;,&quot;;</span>
+<span class="nc" id="L28">        }</span>
+<span class="nc" id="L29">        return &quot;[&quot; + message + &quot;]&quot;;</span>
+    }
+    private static String obstacle(GestionRovers roversServer, Rover rover) {
+<span class="nc" id="L32">        ArrayList&lt;Position&gt; radar = roversServer.getObstacle(rover.getX(),rover.getY());</span>
+<span class="nc" id="L33">        return obstacle(radar, 0, radar.size()-1);</span>
+    }
+    private static String obstacle(ArrayList&lt;Position&gt; radar, int increment, int size) {
+<span class="nc" id="L36">    	String message = &quot;&quot;;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        for (Position each : radar) {</span>
+<span class="nc" id="L38">            message += position(each.getX(),each.getY(),each.getDirection().name());</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if(increment != size) message += &quot;,&quot;;</span>
+<span class="nc" id="L40">        }</span>
+<span class="nc" id="L41">        return &quot;[&quot; + message + &quot;]&quot;;</span>
+    }
+    private static String position(Rover rover) {
+<span class="nc" id="L44">        return position(rover.getX(),rover.getY(),rover.getDirection().name());</span>
+    }
+    private static String position(int x, int y, String direction) {
+<span class="nc" id="L47">        return &quot;{\&quot;x\&quot;:&quot;+x+&quot;,\&quot;y\&quot;:&quot;+y+&quot;,\&quot;direction\&quot;:\&quot;&quot;+direction+&quot;\&quot;}&quot;;</span>
+    }
+    private static void send(PrintWriter writer, String message) {
+<span class="nc" id="L50">        writer.print(message);</span>
+<span class="nc" id="L51">        writer.flush();</span>
+<span class="nc" id="L52">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

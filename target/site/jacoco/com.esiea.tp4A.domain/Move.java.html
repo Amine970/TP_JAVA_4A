@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Move.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp-4A-2020</a> &gt; <a href="index.source.html" class="el_package">com.esiea.tp4A.domain</a> &gt; <span class="el_source">Move.java</span></div><h1>Move.java</h1><pre class="source lang-java linenums">package com.esiea.tp4A.domain;
+import com.esiea.tp4A.server.GestionRovers;
+
+public class Move extends GestionRovers {
+	private final Carte map;
+	private Direction dir;
+	private int x;
+	private int y;
+	public Move(Carte map, Direction direction, int x, int y) {
+<span class="nc" id="L10">		super(map,0);</span>
+<span class="nc" id="L11">		this.map = map;</span>
+<span class="nc" id="L12">		this.dir = direction;</span>
+<span class="nc" id="L13">		this.x = x;</span>
+<span class="nc" id="L14">		this.y = y; }</span>
+	private void move_N(char com) {
+<span class="nc bnc" id="L16" title="All 6 branches missed.">		if(com == 'f' &amp;&amp; recherche_collision_vs_joueur(x,y+1)&amp;&amp; map.valid(x,y+1)) y += 1;</span>
+<span class="nc bnc" id="L17" title="All 6 branches missed.">		else if(com == 'b' &amp;&amp; recherche_collision_vs_joueur(x,y-1)&amp;&amp; map.valid(x,y-1)) y -= 1;</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">		else if(com == 'l') dir = Direction.WEST;</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">		else if(com == 'r') dir = Direction.EAST;}</span>
+	private void move_W(char com) {
+<span class="nc bnc" id="L21" title="All 6 branches missed.">		if(com == 'f' &amp;&amp; recherche_collision_vs_joueur(x+1,y)&amp;&amp; map.valid(x-1,y)) x -= 1;</span>
+<span class="nc bnc" id="L22" title="All 6 branches missed.">		else if(com == 'b' &amp;&amp; recherche_collision_vs_joueur(x-1,y)&amp;&amp; map.valid(x+1,y)) x += 1;</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">		else if(com == 'l') dir = Direction.SOUTH;</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">		else if(com == 'r') dir = Direction.NORTH;}</span>
+	private void move_S(char com) {
+<span class="nc bnc" id="L26" title="All 6 branches missed.">		if(com == 'f' &amp;&amp; recherche_collision_vs_joueur(x,y-1)&amp;&amp; map.valid(x,y-1)) y -= 1;</span>
+<span class="nc bnc" id="L27" title="All 6 branches missed.">		else if(com == 'b' &amp;&amp; recherche_collision_vs_joueur(x,y+1)&amp;&amp; map.valid(x,y+1)) y += 1;</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">		else if(com == 'r') dir = Direction.WEST;</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">		else if(com == 'l') dir = Direction.EAST;}</span>
+	private void move_E(char com) {
+<span class="nc bnc" id="L31" title="All 6 branches missed.">		if(com == 'f' &amp;&amp; recherche_collision_vs_joueur(x-1,y)&amp;&amp; map.valid(x+1,y)) x += 1;</span>
+<span class="nc bnc" id="L32" title="All 6 branches missed.">		else if(com == 'b' &amp;&amp; recherche_collision_vs_joueur(x+1,y)&amp;&amp; map.valid(x-1,y)) x -= 1;</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">		else if(com == 'r') dir = Direction.SOUTH;</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">		else if(com == 'l') dir = Direction.NORTH;}</span>
+	public void go(char com) {
+<span class="nc bnc" id="L36" title="All 2 branches missed.">		if(dir == Direction.NORTH) move_N(com);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">		else if(dir == Direction.SOUTH) move_S(com);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">		else if(dir == Direction.EAST) move_E(com);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">		else if(dir == Direction.WEST) move_W(com);}</span>
+	public boolean recherche_collision_vs_joueur(int x, int y) {
+<span class="nc bnc" id="L41" title="All 6 branches missed.">		for(int i=0;i&lt;Liste.size();i++) if(Liste.get(i).getX() == x &amp;&amp; Liste.get(i).getY() == y) return false;</span>
+<span class="nc" id="L42">		return true;</span>
+	}
+	public int setX() {
+<span class="nc" id="L45">		return x;}</span>
+	public int setY() {
+<span class="nc" id="L47">		return y;}</span>
+	public Direction setDirection() {
+<span class="nc" id="L49">		return dir;}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
