@@ -9,7 +9,6 @@ com\esiea\tp4A\server\Launch.class
 com\esiea\tp4A\server\Sender.class
 com\esiea\tp4A\server\Server.class
 com\esiea\tp4A\domain\Tir.class
-com\esiea\tp4A\Calc.class
 com\esiea\tp4A\domain\Direction.class
 com\esiea\tp4A\server\GestionRovers.class
 com\esiea\tp4A\server\Request.class

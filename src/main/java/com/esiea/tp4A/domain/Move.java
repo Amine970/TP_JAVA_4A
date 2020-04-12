@@ -41,10 +41,10 @@ public class Move extends GestionRovers {
 		for(int i=0;i<Liste.size();i++) if(Liste.get(i).getX() == x && Liste.get(i).getY() == y) return false;
 		return true;
 	}
-	public int setX() {
+	public int getX() {
 		return x;}
-	public int setY() {
+	public int getY() {
 		return y;}
-	public Direction setDirection() {
+	public Direction getDirection() {
 		return dir;}
 }

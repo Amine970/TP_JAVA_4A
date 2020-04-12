@@ -7,47 +7,47 @@ public class Tir extends GestionRovers{
 	private final int y;
 	private Carte map;
 	public Tir(Carte map, int x, int y, Direction dir, int range) {
-<span class="nc" id="L10">		super(map, range);</span>
-<span class="nc" id="L11">		this.x = x;</span>
-<span class="nc" id="L12">		this.y = y;</span>
-<span class="nc" id="L13">		this.dir = dir;</span>
-<span class="nc" id="L14">		this.map = map;</span>
-<span class="nc" id="L15">		tir(range);	}</span>
+<span class="fc" id="L10">		super(map, range);</span>
+<span class="fc" id="L11">		this.x = x;</span>
+<span class="fc" id="L12">		this.y = y;</span>
+<span class="fc" id="L13">		this.dir = dir;</span>
+<span class="fc" id="L14">		this.map = map;</span>
+<span class="fc" id="L15">		tir(range);	}</span>
 	private void tir(int range) {
-<span class="nc bnc" id="L17" title="All 2 branches missed.">		if(dir == Direction.NORTH) tir_N(range);</span>
-<span class="nc bnc" id="L18" title="All 2 branches missed.">		else if(dir == Direction.SOUTH) tir_S(range);</span>
-<span class="nc bnc" id="L19" title="All 2 branches missed.">		else if(dir == Direction.EAST) tir_E(range);</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">		else if(dir == Direction.WEST) tir_W(range);</span>
-<span class="nc" id="L21">	}</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">		if(dir == Direction.NORTH) tir_N(range);</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">		else if(dir == Direction.SOUTH) tir_S(range);</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">		else if(dir == Direction.EAST) tir_E(range);</span>
+<span class="pc bpc" id="L20" title="1 of 2 branches missed.">		else if(dir == Direction.WEST) tir_W(range);</span>
+<span class="fc" id="L21">	}</span>
 	private boolean execTir(int x, int y) {
-<span class="nc" id="L23">		x = cercleX(x); y = cercleY(y);</span>
-<span class="nc bnc" id="L24" title="All 2 branches missed.">		if(!map.valid(x,y)) {</span>
-<span class="nc" id="L25">			map.destroy(x,y);</span>
-<span class="nc" id="L26">			return true;}</span>
-<span class="nc" id="L27">		return false;</span>
+<span class="fc" id="L23">		x = cercleX(x); y = cercleY(y);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">		if(!map.valid(x,y)) {</span>
+<span class="fc" id="L25">			map.destroy(x,y);</span>
+<span class="fc" id="L26">			return true;}</span>
+<span class="fc" id="L27">		return false;</span>
 	}
 	private void tir_N(int range) {
-<span class="nc bnc" id="L30" title="All 6 branches missed.">		for(int i=1;i&lt;=range;i++) if(execTir(x,y+i) || kill(x,y+i)) break;	}</span>
+<span class="pc bpc" id="L30" title="1 of 6 branches missed.">		for(int i=1;i&lt;=range;i++) if(execTir(x,y+i) || kill(x,y+i)) break;	}</span>
 	private void tir_W(int range) {
-<span class="nc bnc" id="L32" title="All 6 branches missed.">		for(int i=1;i&lt;=range;i++) if(execTir(x-i,y) || kill(x-i,y)) break;	}</span>
+<span class="pc bpc" id="L32" title="1 of 6 branches missed.">		for(int i=1;i&lt;=range;i++) if(execTir(x-i,y) || kill(x-i,y)) break;	}</span>
 	private void tir_S(int range) {
-<span class="nc bnc" id="L34" title="All 6 branches missed.">		for(int i=1;i&lt;=range;i++) if(execTir(x,y-i) || kill(x,y-i)) break;	}</span>
+<span class="pc bpc" id="L34" title="2 of 6 branches missed.">		for(int i=1;i&lt;=range;i++) if(execTir(x,y-i) || kill(x,y-i)) break;	}</span>
 	private void tir_E(int range) {
-<span class="nc bnc" id="L36" title="All 6 branches missed.">		for(int i=1;i&lt;=range;i++) if(execTir(x+i,y) || kill(x+i,y)) break;	}</span>
+<span class="pc bpc" id="L36" title="1 of 6 branches missed.">		for(int i=1;i&lt;=range;i++) if(execTir(x+i,y) || kill(x+i,y)) break;	}</span>
 	private boolean kill(int x, int y) {
-<span class="nc" id="L38">		x = cercleX(x); y = cercleY(y);</span>
-<span class="nc bnc" id="L39" title="All 6 branches missed.">		for(int i=0;i&lt;Liste.size();i++) if(Liste.get(i).getX() == x &amp;&amp; Liste.get(i).getY() == y) {</span>
-<span class="nc" id="L40">			Liste.get(i).mort();</span>
-<span class="nc" id="L41">			return true;}</span>
-<span class="nc" id="L42">		return false;</span>
+<span class="fc" id="L38">		x = cercleX(x); y = cercleY(y);</span>
+<span class="pc bpc" id="L39" title="2 of 6 branches missed.">		for(int i=0;i&lt;Liste.size();i++) if(Liste.get(i).getX() == x &amp;&amp; Liste.get(i).getY() == y) {</span>
+<span class="fc" id="L40">			Liste.get(i).mort();</span>
+<span class="fc" id="L41">			return true;}</span>
+<span class="fc" id="L42">		return false;</span>
 	}
 	private int cercleX(int x) {
-<span class="nc bnc" id="L45" title="All 2 branches missed.">		if(x &gt; Math.round(map.getTailleX()/2)) return -Math.round(map.getTailleX()/2)+1;</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">		if(x &lt; -Math.round(map.getTailleX()/2)+1) return Math.round(map.getTailleX()/2);	</span>
-<span class="nc" id="L47">		return x;}</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">		if(x &gt; Math.round(map.getTailleX()/2)) return -Math.round(map.getTailleX()/2)+1;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">		if(x &lt; -Math.round(map.getTailleX()/2)+1) return Math.round(map.getTailleX()/2);	</span>
+<span class="fc" id="L47">		return x;}</span>
 	private int cercleY(int y) {
-<span class="nc bnc" id="L49" title="All 2 branches missed.">		if(y &gt; Math.round(map.getTailleY()/2)) return -Math.round(map.getTailleY()/2)+1;</span>
-<span class="nc bnc" id="L50" title="All 2 branches missed.">		if(y &lt; -Math.round(map.getTailleY()/2)+1) return Math.round(map.getTailleY()/2);</span>
-<span class="nc" id="L51">		return y;}</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">		if(y &gt; Math.round(map.getTailleY()/2)) return -Math.round(map.getTailleY()/2)+1;</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">		if(y &lt; -Math.round(map.getTailleY()/2)+1) return Math.round(map.getTailleY()/2);</span>
+<span class="fc" id="L51">		return y;}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

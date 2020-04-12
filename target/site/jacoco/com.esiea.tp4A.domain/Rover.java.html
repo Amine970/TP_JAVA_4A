@@ -6,48 +6,48 @@ public class Rover implements Position,MarsRover {
 	private Carte map;
 	private final int range;
 	private final String name;
-<span class="nc" id="L9">	private boolean vie = true;</span>
-<span class="nc" id="L10">	public Rover(Carte map, int range, String name) {</span>
-<span class="nc" id="L11">		Coor = MarsRover.super.move(&quot;Init&quot;);</span>
-<span class="nc" id="L12">		this.range = range;</span>
-<span class="nc" id="L13">		this.map = map;</span>
-<span class="nc" id="L14">		this.name = name;</span>
-<span class="nc" id="L15">	}</span>
+<span class="fc" id="L9">	private boolean vie = true;</span>
+<span class="fc" id="L10">	public Rover(Carte map, int range, String name) {</span>
+<span class="fc" id="L11">		Coor = MarsRover.super.move(&quot;Init&quot;);</span>
+<span class="fc" id="L12">		this.range = range;</span>
+<span class="fc" id="L13">		this.map = map;</span>
+<span class="fc" id="L14">		this.name = name;</span>
+<span class="fc" id="L15">	}</span>
 	public int getX() {
-<span class="nc" id="L17">		return Coor.getX();	}</span>
+<span class="fc" id="L17">		return Coor.getX();	}</span>
 	public int getY() {
-<span class="nc" id="L19">		return Coor.getY();	}</span>
+<span class="fc" id="L19">		return Coor.getY();	}</span>
 	public Direction getDirection() {
-<span class="nc" id="L21">		return Coor.getDirection();	}	</span>
+<span class="fc" id="L21">		return Coor.getDirection();	}	</span>
 	private void cercle() {
-<span class="nc bnc" id="L23" title="All 2 branches missed.">		if(getY() &gt; Math.round(map.getTailleY()/2)) Coor = Position.of(getX(),-Math.round(map.getTailleY()/2)+1,getDirection());</span>
-<span class="nc bnc" id="L24" title="All 2 branches missed.">		if(getY() &lt; -Math.round(map.getTailleY()/2)+1) Coor = Position.of(getX(),Math.round(map.getTailleY()/2),getDirection());</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">		if(getX() &gt; Math.round(map.getTailleX()/2)) Coor = Position.of(-Math.round(map.getTailleX()/2)+1,getY(),getDirection());</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">		if(getX() &lt; -Math.round(map.getTailleX()/2)+1) Coor = Position.of(Math.round(map.getTailleX()/2),getY(),getDirection());	}</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">		if(getY() &gt; Math.round(map.getTailleY()/2)) Coor = Position.of(getX(),-Math.round(map.getTailleY()/2)+1,getDirection());</span>
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">		if(getY() &lt; -Math.round(map.getTailleY()/2)+1) Coor = Position.of(getX(),Math.round(map.getTailleY()/2),getDirection());</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">		if(getX() &gt; Math.round(map.getTailleX()/2)) Coor = Position.of(-Math.round(map.getTailleX()/2)+1,getY(),getDirection());</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">		if(getX() &lt; -Math.round(map.getTailleX()/2)+1) Coor = Position.of(Math.round(map.getTailleX()/2),getY(),getDirection());	}</span>
 	private void deplacement(char com) {
-<span class="nc" id="L28">		Move move = new Move(map,getDirection(),getX(),getY());</span>
-<span class="nc" id="L29">		move.go(com);</span>
-<span class="nc" id="L30">		Coor = Position.of(move.setX(),move.setY(),move.setDirection());</span>
-<span class="nc bnc" id="L31" title="All 4 branches missed.">		if(com == 'f' || com == 'b') cercle();}</span>
+<span class="fc" id="L28">		Move move = new Move(map,getDirection(),getX(),getY());</span>
+<span class="fc" id="L29">		move.go(com);</span>
+<span class="fc" id="L30">		Coor = Position.of(move.getX(),move.getY(),move.getDirection());</span>
+<span class="pc bpc" id="L31" title="1 of 4 branches missed.">		if(com == 'f' || com == 'b') cercle();}</span>
 	private void action(char com[]) {
-<span class="nc bnc" id="L33" title="All 2 branches missed.">		for(int i=0;i&lt;com.length;i++) {</span>
-<span class="nc bnc" id="L34" title="All 2 branches missed.">			if(com[i] == 's') new Tir(map,getX(),getY(),getDirection(),range);</span>
-<span class="nc" id="L35">			else deplacement(com[i]);}}</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">		for(int i=0;i&lt;com.length;i++) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">			if(com[i] == 's') new Tir(map,getX(),getY(),getDirection(),range);</span>
+<span class="fc" id="L35">			else deplacement(com[i]);}}</span>
 	public Position move(String commande) {
-<span class="nc" id="L37">		char [] com = commande.toCharArray();</span>
-<span class="nc bnc" id="L38" title="All 2 branches missed.">		if(vie) action(com);</span>
-<span class="nc" id="L39">        return Coor;    } </span>
+<span class="fc" id="L37">		char [] com = commande.toCharArray();</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">		if(vie) action(com);</span>
+<span class="fc" id="L39">        return Coor;    } </span>
 	public String getName() {
-<span class="nc" id="L41">		return name;</span>
+<span class="fc" id="L41">		return name;</span>
 	}
 	public boolean getLive() {
-<span class="nc" id="L44">		return vie;</span>
+<span class="fc" id="L44">		return vie;</span>
 	}
 	public void initCoor(int x, int y) {
-<span class="nc" id="L47">		Coor = Position.of(x,y,Direction.NORTH);</span>
-<span class="nc" id="L48">	}</span>
+<span class="fc" id="L47">		Coor = Position.of(x,y,Direction.NORTH);</span>
+<span class="fc" id="L48">	}</span>
 	public void mort() {
-<span class="nc" id="L50">		vie = false;</span>
-<span class="nc" id="L51">	}</span>
+<span class="fc" id="L50">		vie = false;</span>
+<span class="fc" id="L51">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

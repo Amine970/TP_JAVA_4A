@@ -27,7 +27,7 @@ public class Rover implements Position,MarsRover {
 	private void deplacement(char com) {
 		Move move = new Move(map,getDirection(),getX(),getY());
 		move.go(com);
-		Coor = Position.of(move.setX(),move.setY(),move.setDirection());
+		Coor = Position.of(move.getX(),move.getY(),move.getDirection());
 		if(com == 'f' || com == 'b') cercle();}
 	private void action(char com[]) {
 		for(int i=0;i<com.length;i++) {

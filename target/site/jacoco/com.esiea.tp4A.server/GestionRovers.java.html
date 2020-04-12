@@ -4,41 +4,41 @@ import java.util.*;
 import com.esiea.tp4A.domain.*;
 
 public class GestionRovers implements RoversServer {
-<span class="nc" id="L7">	protected static ArrayList&lt;Rover&gt; Liste = new ArrayList&lt;Rover&gt;();</span>
+<span class="fc" id="L7">	protected static ArrayList&lt;Rover&gt; Liste = new ArrayList&lt;Rover&gt;();</span>
 	private Carte map;
 	private final int laserRange;
-<span class="nc" id="L10">	public GestionRovers(Carte map, int laserRange) {</span>
-<span class="nc" id="L11">		this.map = map;</span>
-<span class="nc" id="L12">		this.laserRange = laserRange;</span>
-<span class="nc" id="L13">	}</span>
+<span class="fc" id="L10">	public GestionRovers(Carte map, int laserRange) {</span>
+<span class="fc" id="L11">		this.map = map;</span>
+<span class="fc" id="L12">		this.laserRange = laserRange;</span>
+<span class="fc" id="L13">	}</span>
 	public Rover getRover(String player) {
-<span class="nc bnc" id="L15" title="All 4 branches missed.">		for(int i=0;i&lt;Liste.size();i++) if(Liste.get(i).getName().equals(player)) return Liste.get(i);</span>
+<span class="pc bpc" id="L15" title="1 of 4 branches missed.">		for(int i=0;i&lt;Liste.size();i++) if(Liste.get(i).getName().equals(player)) return Liste.get(i);</span>
 <span class="nc" id="L16">		return null;</span>
 	}
 	public void setRover(String player) {
-<span class="nc" id="L19">		GenerateRover rov = new GenerateRover(map, Liste);</span>
-<span class="nc" id="L20">		Liste.add(rov.genStart(laserRange,player));	</span>
-<span class="nc" id="L21">	}</span>
+<span class="fc" id="L19">		GenerateRover rov = new GenerateRover(map, Liste);</span>
+<span class="fc" id="L20">		Liste.add(rov.genStart(laserRange,player));	</span>
+<span class="fc" id="L21">	}</span>
 	public ArrayList&lt;Rover&gt; getMapRover(int x, int y) {
-<span class="nc" id="L23">		ArrayList&lt;Rover&gt; Rov = new ArrayList&lt;Rover&gt;();</span>
-<span class="nc bnc" id="L24" title="All 6 branches missed.">		for(int i=0;i&lt;Liste.size();i++) if(Math.abs(Liste.get(i).getX()-x) &lt;= 30 &amp;&amp; Math.abs(Liste.get(i).getY()-y) &lt;= 30) Rov.add(Liste.get(i));</span>
-<span class="nc" id="L25">		return Rov;</span>
+<span class="fc" id="L23">		ArrayList&lt;Rover&gt; Rov = new ArrayList&lt;Rover&gt;();</span>
+<span class="pc bpc" id="L24" title="2 of 6 branches missed.">		for(int i=0;i&lt;Liste.size();i++) if(Math.abs(Liste.get(i).getX()-x) &lt;= 30 &amp;&amp; Math.abs(Liste.get(i).getY()-y) &lt;= 30) Rov.add(Liste.get(i));</span>
+<span class="fc" id="L25">		return Rov;</span>
 	}
 	public String getStatus(String player) {
-<span class="nc" id="L28">		Rover tmp = getRover(player);</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">		if(tmp.getLive()) return &quot;En vie&quot;;</span>
-<span class="nc" id="L30">		return &quot;Mort&quot;;</span>
+<span class="fc" id="L28">		Rover tmp = getRover(player);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">		if(tmp.getLive()) return &quot;En vie&quot;;</span>
+<span class="fc" id="L30">		return &quot;Mort&quot;;</span>
 	}
 
 	public ArrayList&lt;Position&gt; getObstacle(int x, int y) {
-<span class="nc" id="L34">		ArrayList&lt;Position&gt; obstacle = map.getObstacle();</span>
-<span class="nc" id="L35">		ArrayList&lt;Position&gt; radar = new ArrayList&lt;Position&gt;();</span>
-<span class="nc bnc" id="L36" title="All 6 branches missed.">		for(int i=0;i&lt;obstacle.size();i++) if(Math.abs(obstacle.get(i).getX()-x) &lt;= 30 &amp;&amp; Math.abs(obstacle.get(i).getY()-y) &lt;= 30) radar.add(obstacle.get(i));</span>
-<span class="nc" id="L37">		return radar;</span>
+<span class="fc" id="L34">		ArrayList&lt;Position&gt; obstacle = map.getObstacle();</span>
+<span class="fc" id="L35">		ArrayList&lt;Position&gt; radar = new ArrayList&lt;Position&gt;();</span>
+<span class="pc bpc" id="L36" title="2 of 6 branches missed.">		for(int i=0;i&lt;obstacle.size();i++) if(Math.abs(obstacle.get(i).getX()-x) &lt;= 30 &amp;&amp; Math.abs(obstacle.get(i).getY()-y) &lt;= 30) radar.add(obstacle.get(i));</span>
+<span class="fc" id="L37">		return radar;</span>
 	}
 	public boolean containRover(String player) {
-<span class="nc bnc" id="L40" title="All 4 branches missed.">		for(int i=0;i&lt;Liste.size();i++) if(Liste.get(i).getName().equals(player)) return true;</span>
-<span class="nc" id="L41">		return false;</span>
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">		for(int i=0;i&lt;Liste.size();i++) if(Liste.get(i).getName().equals(player)) return true;</span>
+<span class="fc" id="L41">		return false;</span>
 	}
 
 }
