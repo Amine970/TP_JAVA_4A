@@ -1,11 +1,16 @@
 package com.esiea.tp4A.domain;
 
 public class Rover implements Position,MarsRover {
-	
+	/* Cette variable n'est pas final car elle correspond à la position du rover à un instant t, et 
+    elle est amenée à évoluer en fonction des actions des joueurs */
 	private Position Coor;
+    /* Cette variable n'est pas final car elle correspond à la carte des obstacles et elle est amenée à évoluer 
+    en fonction des actions des joueurs (utilisation du laser du rover) */
 	private Carte map;
 	private final int range;
 	private final String name;
+    /* Cette variable n'est pas final car elle correspond au status du rover et elle est amenée à évoluer 
+    si le rover reçoit un tir de laser */
 	private boolean vie = true;
 	public Rover(Carte map, int range, String name) {
 		Coor = MarsRover.super.move("Init");
