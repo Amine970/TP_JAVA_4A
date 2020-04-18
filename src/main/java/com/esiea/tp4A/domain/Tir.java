@@ -5,6 +5,8 @@ public class Tir extends GestionRovers{
 	private final Direction dir;
 	private final int x;
 	private final int y;
+     /* Cette variable n'est pas final car elle correspond à la carte des obstacles et elle est amenée à évoluer 
+    si le tir du laser touche un obstacle */
 	private Carte map;
 	public Tir(Carte map, int x, int y, Direction dir, int range) {
 		super(map, range);
