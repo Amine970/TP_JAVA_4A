@@ -3,6 +3,9 @@ import com.esiea.tp4A.server.GestionRovers;
 
 public class Move extends GestionRovers {
 	private final Carte map;
+    /* Les variables de position et d'orientation suivantes ne sont pas final car la classe Move est instanciée
+    au début de chaque mouvement avec les valeurs de position actuelles, puis le contenu de ces variables va évoluer 
+    en fonction de l'action souhaitée par les joueurs, des obstacles, des autres joueurs et des coordonnées initiales */
 	private Direction dir;
 	private int x;
 	private int y;
