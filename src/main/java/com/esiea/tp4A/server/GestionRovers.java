@@ -4,7 +4,14 @@ import java.util.*;
 import com.esiea.tp4A.domain.*;
 
 public class GestionRovers implements RoversServer {
+    /* Cette variable est static car elle correspond à la liste des rovers, hors la classe GestionRovers est instanciée 
+    au lancement du serveur et également par les classes Move et Tir qui héritent de celle-ci 
+    afin de pouvoir récupérer la liste des Rovers pour déterminer si un tir en rencontre un ou si un mouvement 
+    va enclencher une collision avec un autre rover. Il est donc important que la liste des Rovers soit la même 
+    pour toutes les différentes instanciations de la classe GestionRovers d'où la variable static */
 	protected static ArrayList<Rover> Liste = new ArrayList<Rover>();
+    /* Cette variable n'est pas final car elle correspond à la carte des obstacles et elle est amenée à évoluer 
+    en fonction des actions des joueurs (utilisation du laser du rover) */
 	private Carte map;
 	private final int laserRange;
 	public GestionRovers(Carte map, int laserRange) {
