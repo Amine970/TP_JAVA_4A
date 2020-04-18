@@ -8,6 +8,8 @@ import java.net.Socket;
 public class Server {
     private final ServerSocket serverSocket;
     private final GestionRovers roversServer;
+    /* Cette variable n'est pas final car elle correspond à la carte des obstacles et elle est amenée à évoluer 
+    en fonction des actions des joueurs (utilisation du laser du rover) */
     private Carte map = null;
     private final int laserRange;
     public Server (int port, int tailleX, int tailleY, int laserRange) throws IOException {
