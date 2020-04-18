@@ -5,7 +5,9 @@ import java.util.Random;
 import com.esiea.tp4A.domain.*;
 public class GenerateRover {
 	
-	private Carte map;
+	private final Carte map;
+    /* Cette variable n'est pas final car elle correspond à la liste des rovers déjà présents sur le serveur
+    et qu'elle va évoluer avec l'ajout d'un rover supplémentaire */
 	private ArrayList<Rover> Liste = null;
 	
 	public GenerateRover(Carte map, ArrayList<Rover> Liste) {
