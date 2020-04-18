@@ -3,7 +3,8 @@ package com.esiea.tp4A.domain;
 import java.util.*;
 
 public class Carte implements PlanetMap {
-	
+	/*Cette variable n'est pas final, car la classe Carte n'est instanciée qu'au lancement du serveur
+    et car la liste des obstacles est amenée à varier en fonction des actions des joueurs*/
 	private ArrayList<Position> obstacle;	
 	private final int taille[] = new int[2];
 	
