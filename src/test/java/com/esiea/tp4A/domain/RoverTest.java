@@ -22,7 +22,7 @@ class RoverTest {
     @Test
     void move() {
         rover.initCoor(13,10);
-        rover.move("f");
+        rover.move("sf");
         assertEquals(11, rover.getY());
         rover.move("srsrsrsrs");
         int nbObstacles = obstacles.size();
